@@ -26,8 +26,10 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
-          # No brand icon yet; add custom_components/pax/brand/ and drop this.
-          ignore: brands
+          # brands: no brand icon yet; add custom_components/pax/brand/ and drop it.
+          # topics: only needed to be listed in the HACS default store, not to install
+          # as a custom repository.
+          ignore: brands topics
 
   test:
     runs-on: ubuntu-latest
