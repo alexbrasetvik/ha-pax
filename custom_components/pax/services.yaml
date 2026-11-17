@@ -1,0 +1,9 @@
+start_or_extend:
+  target:
+    entity:
+      integration: pax
+      domain: switch
+  fields:
+    duration:
+      selector:
+        duration:

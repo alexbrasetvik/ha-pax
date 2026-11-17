@@ -1,0 +1,51 @@
+[project]
+name = "ha-pax"
+version = "0.1.0"
+description = "Home Assistant integration for the PAX Momento towel warmer over Bluetooth LE"
+requires-python = ">=3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest-homeassistant-custom-component",
+    # Requirements of HA's bluetooth component, which the test harness doesn't pull in.
+    "aiousbwatcher",
+    "bleak",
+    "bleak-retry-connector",
+    "bluetooth-adapters",
+    "bluetooth-auto-recovery",
+    "bluetooth-data-tools",
+    "dbus-fast",
+    "habluetooth",
+    "serialx",
+    "mypy",
+    "ruff",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+extend-exclude = [".cache"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "ASYNC", "PL", "PT"]
+ignore = [
+    "PLR0913",  # HA callbacks and dataclasses take many arguments
+    "PLR2004",  # protocol byte values read better inline
+    "RUF012",  # HA entities declare _attr_* lists as class attributes
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["PLR0911", "PLR0915", "PLR0917", "PLC0415"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+files = ["custom_components/pax"]

@@ -1,0 +1,25 @@
+# The quality gates: the same paths and checks as the README's development section.
+
+[tasks.test]
+description = "Run the test suite"
+run = "uv run pytest"
+
+[tasks.lint]
+description = "Lint with ruff and type-check with mypy"
+run = [
+    "uv run ruff check custom_components/ tests/",
+    "uv run mypy",
+]
+
+[tasks.format]
+description = "Format code in place with ruff"
+run = "uv run ruff format custom_components/ tests/"
+
+[tasks.check]
+description = "Run every quality gate without modifying files (CI equivalent)"
+depends = ["lint", "test"]
+run = "uv run ruff format --check custom_components/ tests/"
+
+[tasks.hassfest]
+description = "Run hassfest against a checkout of Home Assistant core at the installed version (under .cache/)"
+run = "scripts/hassfest.sh"

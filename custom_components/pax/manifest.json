@@ -1,0 +1,23 @@
+{
+  "domain": "pax",
+  "name": "PAX",
+  "bluetooth": [
+    {
+      "local_name": "Pax Momento",
+      "connectable": true
+    }
+  ],
+  "codeowners": [
+    "@alexbrasetvik"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "bluetooth_adapters"
+  ],
+  "documentation": "https://github.com/alexbrasetvik/ha-pax",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/alexbrasetvik/ha-pax/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

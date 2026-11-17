@@ -1,0 +1,39 @@
+{
+  "entity": {
+    "switch": {
+      "heater": {
+        "default": "mdi:radiator",
+        "state": {
+          "off": "mdi:radiator-off"
+        }
+      }
+    },
+    "select": {
+      "heating_level": {
+        "default": "mdi:fire"
+      },
+      "timer_length": {
+        "default": "mdi:timer-outline"
+      }
+    },
+    "sensor": {
+      "heat_source": {
+        "default": "mdi:fire",
+        "state": {
+          "off": "mdi:fire-off",
+          "button": "mdi:gesture-tap-button",
+          "schedule": "mdi:calendar-clock",
+          "power_on": "mdi:power-plug"
+        }
+      },
+      "heating_until": {
+        "default": "mdi:timer-sand"
+      }
+    }
+  },
+  "services": {
+    "start_or_extend": {
+      "service": "mdi:timer-plus-outline"
+    }
+  }
+}

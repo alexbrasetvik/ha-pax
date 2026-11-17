@@ -1,0 +1,103 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Pick your PAX Momento",
+        "description": "Bluetooth devices your adapters and proxies can hear, likely heaters first. If you're not sure which one it is, the heater's is usually the strongest signal near the bathroom.",
+        "data": {
+          "address": "Device"
+        }
+      },
+      "pair": {
+        "title": "Put the heater in pairing mode",
+        "description": "1. Press the button on the heater about **7 times**, until the light turns **green**, then **blue**.\n2. While it's blue, press **Submit**.\n\nThe presses also switch the heater on and off; that's fine."
+      },
+      "reauth_confirm": {
+        "title": "Pair the heater again",
+        "description": "The heater no longer accepts the saved PIN.\n\n1. Press the button on the heater about **7 times**, until the light turns **green**, then **blue**.\n2. While it's blue, press **Submit**."
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect. Check a Bluetooth adapter or proxy is in range, and that the PAX app isn't connected to it.",
+      "not_in_pairing_mode": "The heater isn't in pairing mode. Press its button until the light goes green then blue, and submit while it's blue.",
+      "not_momento": "That device isn't a PAX Momento.",
+      "pin_rejected": "The heater rejected its PIN. Put it in pairing mode again and retry.",
+      "unknown": "Unexpected error, see the logs."
+    },
+    "abort": {
+      "already_configured": "This heater is already configured.",
+      "no_devices_found": "No Bluetooth devices found. Check an adapter or ESPHome Bluetooth proxy is in range of the heater.",
+      "reauth_successful": "Paired again."
+    }
+  },
+  "entity": {
+    "select": {
+      "heating_level": {
+        "name": "Heating level",
+        "state": {
+          "40": "40 %",
+          "60": "60 %",
+          "100": "100 %"
+        }
+      },
+      "timer_length": {
+        "name": "Timer length",
+        "state": {
+          "2": "2 hours",
+          "3": "3 hours",
+          "4": "4 hours",
+          "5": "5 hours",
+          "6": "6 hours"
+        }
+      }
+    },
+    "sensor": {
+      "rail_temperature": {
+        "name": "Rail temperature"
+      },
+      "heat_source": {
+        "name": "Heat source",
+        "state": {
+          "off": "Off",
+          "power_on": "Power-on warm-up",
+          "button": "Button",
+          "schedule": "Schedule",
+          "other": "Other"
+        }
+      },
+      "heating_until": {
+        "name": "Heating until"
+      }
+    }
+  },
+  "exceptions": {
+    "not_found": {
+      "message": "No Bluetooth adapter or proxy can hear the heater at {address}."
+    },
+    "unreachable": {
+      "message": "Could not reach the heater: {error}"
+    },
+    "pin_rejected": {
+      "message": "The heater rejected the saved PIN."
+    },
+    "cannot_plan_boost": {
+      "message": "Can't schedule heating for that duration: {error}"
+    },
+    "started_at_heater": {
+      "message": "The heater was switched on with its button. Switching it off from Home Assistant only stops heating that Home Assistant started; press the button on the heater instead."
+    }
+  },
+  "services": {
+    "start_or_extend": {
+      "name": "Start or extend heating",
+      "description": "Heats for at least the given time from now. If Home Assistant already has the heater on for longer, that's kept, so it never shortens a run. Good for automations that fire repeatedly, like a humidity sensor noticing a shower.",
+      "fields": {
+        "duration": {
+          "name": "Duration",
+          "description": "How long to heat for from now, up to 12 hours. Defaults to the timer length."
+        }
+      }
+    }
+  }
+}
